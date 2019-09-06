@@ -9,33 +9,37 @@ namespace Officer_Project
 {
     class Officer
     {
-        private Random _random = new Random();
+        private Mutex _mutex = new Mutex();
         private int _currentCustomerTimeInside;
-        private int _timer = 0;
-        private QueueManagement _queue;
+        public int Timer { get; set; }
+        private int _customersServed = 0;
 
-        public Officer(QueueManagement Queue)
+        public Officer()
         {
-            _queue = Queue;
+            Timer = 0;
         }
 
         public void CallNextOne(Object i)
         {
-            while (QueueManagement.Customers > 0 && _timer < 540)
+            while (QueueManagement.Customers > 0)
             {
+                //_mutex.WaitOne();
                 if (QueueManagement.Customers > 0)
                 {
                     QueueManagement.Customers--;
-                    _currentCustomerTimeInside = _random.Next(QueueManagement._timeInside - 5, QueueManagement._timeInside + 5);
+                    //_mutex.ReleaseMutex();
+                    _currentCustomerTimeInside = QueueManagement._random.Next(QueueManagement._timeInside - 5, QueueManagement._timeInside + 5);
                     Thread.Sleep(_currentCustomerTimeInside);
-                    _timer += _currentCustomerTimeInside;
+                    Timer += _currentCustomerTimeInside;
+                    _customersServed++;
                 }
                 else
                 {
+                    //_mutex.ReleaseMutex();
                     break;
                 }
             }
-            Console.WriteLine("Officer {0} Done!, worked {1} minutes",(int) i + 1, _timer);
+            Console.WriteLine("Officer {0} Done!, worked {1} minutes, served {2}",(int) i + 1, Timer, _customersServed);
         }
     }
 }

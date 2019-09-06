@@ -26,6 +26,7 @@ namespace Officer_Project
         private static Mutex _mutex = new Mutex();
         public static int _timeInside;
         private int _officers;
+        public static Random _random = new Random();
 
         public QueueManagement(int customers, int timeInside, int officers)
         {

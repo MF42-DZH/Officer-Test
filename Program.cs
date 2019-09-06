@@ -43,7 +43,7 @@ namespace Officer_Project
 
             for(int i = 0;i < officers;i++)
             {
-                theOffice[i] = new Officer(Q);
+                theOffice[i] = new Officer();
                 threads[i] = new Thread(new ParameterizedThreadStart(theOffice[i].CallNextOne));
                 threads[i].Start(i);
             }
