@@ -23,11 +23,11 @@ namespace Officer_Project
         {
             while (QueueManagement.Customers > 0)
             {
-                //_mutex.WaitOne();
+                _mutex.WaitOne();
                 if (QueueManagement.Customers > 0)
                 {
                     QueueManagement.Customers--;
-                    //_mutex.ReleaseMutex();
+                    _mutex.ReleaseMutex();
                     _currentCustomerTimeInside = QueueManagement._random.Next(QueueManagement._timeInside - 5, QueueManagement._timeInside + 5);
                     Thread.Sleep(_currentCustomerTimeInside);
                     Timer += _currentCustomerTimeInside;
@@ -35,11 +35,11 @@ namespace Officer_Project
                 }
                 else
                 {
-                    //_mutex.ReleaseMutex();
+                    _mutex.ReleaseMutex();
                     break;
                 }
             }
-            Console.WriteLine("Officer {0} Done!, worked {1} minutes, served {2}",(int) i + 1, Timer, _customersServed);
+            Console.WriteLine("Officer {0} Done!, worked {1} minutes, served {2}, {3} are now in the line",(int) i + 1, Timer, _customersServed, QueueManagement.Customers);
         }
     }
 }

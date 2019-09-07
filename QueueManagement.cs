@@ -18,9 +18,9 @@ namespace Officer_Project
             }
             set
             {
-                _mutex.WaitOne();
+                //_mutex.WaitOne();
                 _customers = value;
-                _mutex.ReleaseMutex();
+                //_mutex.ReleaseMutex();
             }
         }
         private static Mutex _mutex = new Mutex();
