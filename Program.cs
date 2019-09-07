@@ -47,6 +47,9 @@ namespace Officer_Project
                 threads[i] = new Thread(new ParameterizedThreadStart(theOffice[i].CallNextOne));
                 threads[i].Start(i);
             }
+
+            // Console.WriteLine("PRESS A KEY TO EXIT");  // Pauses program exit.
+            // Console.ReadKey();                         // Pauses program exit.
         }
     }
 }
