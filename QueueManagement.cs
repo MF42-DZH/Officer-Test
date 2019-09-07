@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 namespace Officer_Project
 {
     // Consider using a struct with public non-static members with { get; private set; } accessors
-    // (or { get; set; }) in the case of _customers.
-    // instead for holding values without much methods.
+    // (or { get; set; }) in the case of _customers instead for holding values without much methods.
     // Assignments and modifications to fields are faster than if using class.
     // See: https://www.c-sharpcorner.com/blogs/difference-between-struct-and-class-in-c-sharp
     class QueueManagement
